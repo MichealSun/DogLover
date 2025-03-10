@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -15,6 +17,7 @@
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.6",
     "@mui/x-data-grid": "^7.27.2",
+    "gh-pages": "^6.3.0",
     "js-cookie": "^3.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -42,5 +45,5 @@
   "bugs": {
     "url": "https://github.com/MichealSun/DogLover/issues"
   },
-  "homepage": "https://github.com/MichealSun/DogLover#readme"
+  "homepage": "https://github.com/MichealSun/DogLover"
 }
