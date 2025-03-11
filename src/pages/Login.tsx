@@ -70,6 +70,7 @@ const Login: React.FC = () => {
       updateUserName(userName)
       navigate('/search')
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch(err) {
       // TODO: log error
       setLoginErrMsg('We encountered an error during login. Please try again later.')

@@ -113,32 +113,33 @@ const Search: React.FC = () => {
     },
   ]
 
-  const fetchIds = async (breeds?: string[], zipCodes?: string[], minAge?: string, maxAge?: string) => {
+  const fetchIds = async () => {
     const search = {
       size: `${pageSize}`,
       from: `${pageSize * pageNum}`,
       sort: `${orderBy}:${order}`,
     }
 
-    if (breeds?.length) {
-      breeds.forEach((breed) => {
-        search['breeds'] = breed
-      })
+    if (minAgeFilter?.length) {
+      search['ageMin'] = minAgeFilter
     }
-    if (zipCodes?.length) {
-      zipCodes.forEach((breed) => {
-        search['zipCodes'] = breed
-      })
-    }
-    if (minAge?.length) {
-      search['ageMin'] = minAge
-    }
-    if (maxAge?.length) {
-      search['ageMax'] = maxAge
+    if (maxAgeFilter?.length) {
+      search['ageMax'] = maxAgeFilter
     }
 
     const params = new URLSearchParams(search)
     let list = []
+
+    if (breedFilters?.length) {
+      breedFilters.forEach((breed) => {
+        params.append("breeds", breed);
+      })
+    }
+    if (zipCodeFilters?.length) {
+      zipCodeFilters.forEach((zipeCode) => {
+        params.append("zipCodes", zipeCode);
+      })
+    }
 
     try {
       setTableLoading(true)
@@ -202,7 +203,17 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     fetchIds() 
-  }, [pageNum, orderBy, order, pageNum, pageSize])
+  }, [
+    pageNum,
+    orderBy,
+    order,
+    pageNum,
+    pageSize,
+    breedFilters,
+    zipCodeFilters,
+    maxAgeFilter,
+    minAgeFilter
+  ])
 
   useEffect(() => {
     fetchBreed()
@@ -213,7 +224,6 @@ const Search: React.FC = () => {
     setZipCodeFilters(zipCodes)
     setMinAgeFilter(minAge)
     setMaxAgeFilter(maxAge)
-    fetchIds(breeds, zipCodes, minAge, maxAge)
   }
 
   const handleOpenFilter = (open: boolean) => {

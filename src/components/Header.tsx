@@ -23,6 +23,8 @@ const Header: React.FC = () => {
       if (!response.ok) {
         throw new Error(`Logout Error: ${response.status}`)
       }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch(err) {
       // logout error handling
     } finally {
