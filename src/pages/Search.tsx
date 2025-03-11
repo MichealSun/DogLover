@@ -224,6 +224,7 @@ const Search: React.FC = () => {
     setZipCodeFilters(zipCodes)
     setMinAgeFilter(minAge)
     setMaxAgeFilter(maxAge)
+    setPageNum(0)
   }
 
   const handleOpenFilter = (open: boolean) => {
