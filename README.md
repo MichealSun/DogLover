@@ -25,12 +25,18 @@ git clone git@github.com:MichealSun/DogLover.git
 cd DogLover
 ```
 
-### 2. Install dependencies
+### 2. Node version
+Be sure to have Node v20 set up in your enviroment. You can use [NVM](https://github.com/nvm-sh/nvm) to manage your node version.
+```bash
+nvm use 20
+```
+
+### 3. Install dependencies
 ```bash
 npm install
 ```
 
-### 2. Run the development server
+### 4. Run the development server
 ```bash
 npm run dev
 ```
