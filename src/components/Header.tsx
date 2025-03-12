@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip'
 import Typography from '@mui/material/Typography'
 import { blueGrey } from '@mui/material/colors'
 import { useAppContext } from '../context/useAppContext'
-import { BASE_URL } from '../constant'
+import { BASE_URL } from '../utils/constant'
 
 const Header: React.FC = () => {
   const { userName } = useAppContext()

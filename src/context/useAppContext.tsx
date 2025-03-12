@@ -1,7 +1,7 @@
 import React, { useContext, createContext, useState } from 'react'
 import Cookies from 'js-cookie'
 import { Dog } from '../types/dog'
-import { USERNAME_COOKIE } from '../constant'
+import { USERNAME_COOKIE } from '../utils/constant'
 
 type AuthContextType = {
   userName: string

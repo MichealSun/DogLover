@@ -6,12 +6,13 @@ import Container from '@mui/material/Container'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useAppContext } from '../context/useAppContext'
-import { BASE_URL } from '../constant'
+import { BASE_URL } from '../utils/constant'
+import { validEmail } from '../utils/helper'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
 
-  const { updateUserName} = useAppContext()
+  const { updateUserName } = useAppContext()
 
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -22,7 +23,6 @@ const Login: React.FC = () => {
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target: { value }} = e
     setUserName(value)
-    setUserNameErr(!value)
   }
 
   const handleNameBlur = () => {
@@ -30,24 +30,27 @@ const Login: React.FC = () => {
   }
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     const { target: { value }} = e
     setUserEmail(value)
-    setUserEmailErr(!value || !emailRegex.test(value))
   }
 
   const handleEmailBlur = () => {
-    setUserEmailErr(!userEmail)
+    setUserEmailErr(!validEmail(userEmail))
   }
 
   const handleLogin = async () => {
-    if (!userName || !userEmail) {
-      setUserEmailErr(true)
+    let hasError = false;
+    if (!userName) {
       setUserNameErr(true)
-      return
+      hasError = true
     }
 
-    if (userNameErr || userEmailErr) {
+    if (!validEmail(userEmail)) {
+      setUserEmailErr(true)
+      hasError = true
+    }
+    
+    if (hasError) {
       return
     }
 

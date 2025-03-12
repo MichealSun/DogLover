@@ -22,7 +22,7 @@ import Tooltip from '@mui/material/Tooltip'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 
-import { BASE_URL } from '../constant'
+import { BASE_URL } from '../utils/constant'
 import { Dog, Order } from '../types/dog'
 import Header from '../components/Header'
 import DogFilterFlyout from '../components/DogFilterFlypout'
