@@ -218,6 +218,9 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     fetchBreed()
+    const list = localStorage.getItem('selected');
+    const pareseList = JSON.parse(list || '[]');
+    setSelected(pareseList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -237,9 +240,11 @@ const Search: React.FC = () => {
     if (event.target.checked) {
       const newSelected = dogs.map((n) => n.id)
       setSelected(newSelected)
+      localStorage.setItem("selected", JSON.stringify(newSelected))
       return
     }
     setSelected([])
+    localStorage.setItem("selected", '[]')
   }
 
   const hanleSelectedReset = () => setSelected([])
@@ -265,6 +270,7 @@ const Search: React.FC = () => {
       )
     }
     setSelected(newSelected)
+    localStorage.setItem("selected", JSON.stringify(newSelected))
   }
   const handleChangePage = (event: unknown, newPage: number) => {
     setPageNum(newPage)
@@ -311,6 +317,7 @@ const Search: React.FC = () => {
         throw new Error(`Match dogs Error: ${response.status}`)
       }
       setSelected([])
+      localStorage.setItem("selected", '[]')
       setMatchDog((await response.json())[0])
 
     } catch(err) {
