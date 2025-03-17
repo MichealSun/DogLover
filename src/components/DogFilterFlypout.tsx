@@ -30,6 +30,7 @@ const DogFilterFlyout: React.FC<DogFilterFlyoutProps> = ({
   const [zipCodeFilters, setZipCodeFilters] = useState<string[]>(zipCodesProps)
   const [minAgeFilter, setMinAgeFilter] = useState<string>(minAgeProps)
   const [maxAgeFilter, setMaxAgeFilter] = useState<string>(maxAgeProps)
+  const [ageError, setAgeError] = useState<string>('')
   
   useEffect(() => {
     setBreedFilters(breedsProps)
@@ -53,11 +54,21 @@ const DogFilterFlyout: React.FC<DogFilterFlyoutProps> = ({
   
   const handleMinAgeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target: { value } } = event
+    if (maxAgeFilter && value > maxAgeFilter) {
+      setAgeError('Min age can not larger than max age')
+    }else {
+      setAgeError('')
+    }
     setMinAgeFilter(value)
   }
   
   const handleMaxAgeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target: { value } } = event
+    if (minAgeFilter && value < minAgeFilter) {
+      setAgeError('Min age can not larger than max age')
+    } else {
+      setAgeError('')
+    }
     setMaxAgeFilter(value)
   }
 
@@ -102,6 +113,8 @@ const DogFilterFlyout: React.FC<DogFilterFlyoutProps> = ({
           value={zipCodeFilters.join(',')}
         />
         <TextField
+          error={!!ageError}
+          helperText={ageError}
           onChange={handleMinAgeFilter}
           label="Min age"
           placeholder='Enter a min age'
@@ -109,6 +122,8 @@ const DogFilterFlyout: React.FC<DogFilterFlyoutProps> = ({
           type='number'
         />
         <TextField
+          error={!!ageError}
+          helperText={ageError}
           onChange={handleMaxAgeFilter}
           label="Max age"
           placeholder='Enter a max age'
