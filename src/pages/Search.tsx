@@ -132,12 +132,12 @@ const Search: React.FC = () => {
 
     if (breedFilters?.length) {
       breedFilters.forEach((breed) => {
-        params.append("breeds", breed);
+        params.append("breeds", breed)
       })
     }
     if (zipCodeFilters?.length) {
       zipCodeFilters.forEach((zipeCode) => {
-        params.append("zipCodes", zipeCode);
+        params.append("zipCodes", zipeCode)
       })
     }
 
@@ -203,6 +203,7 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     fetchIds() 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     pageNum,
     orderBy,
@@ -217,6 +218,7 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     fetchBreed()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleApplyFilter = (breeds: string[], zipCodes: string[], minAge: string, maxAge: string) => {
@@ -256,11 +258,7 @@ const Search: React.FC = () => {
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, id)
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1))
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1))
-    } else if (selectedIndex > 0) {
+    } else {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1),
@@ -493,7 +491,7 @@ const Search: React.FC = () => {
       )}
       <Paper sx={{ width: 'calc(100% - 8rem)', mb: 2, margin: '1rem 4rem' }}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer sx={{ height: 'calc(100vh - 16rem)' }}>
+        <TableContainer sx={{ height: 'calc(100vh - 14rem)' }}>
           {tableLoading && (
             <Box position='absolute' top='50%' left='50%'>
               <CircularProgress />

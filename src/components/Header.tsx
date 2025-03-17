@@ -37,7 +37,7 @@ const Header: React.FC = () => {
       display='flex'
       alignItems='center'
       justifyContent='space-between'
-      padding='2rem 4rem'
+      padding='1rem 4rem'
       sx={{ backgroundColor: blueGrey[50] }}
     >
       <Typography variant='h4'>

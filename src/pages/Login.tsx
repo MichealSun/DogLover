@@ -39,7 +39,7 @@ const Login: React.FC = () => {
   }
 
   const handleLogin = async () => {
-    let hasError = false;
+    let hasError = false
     if (!userName) {
       setUserNameErr(true)
       hasError = true

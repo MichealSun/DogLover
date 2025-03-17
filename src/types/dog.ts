@@ -7,4 +7,4 @@ export type Dog = {
     breed: string
 }
 
-export type Order = 'asc' | 'desc';
+export type Order = 'asc' | 'desc'
